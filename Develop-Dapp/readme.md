@@ -1,6 +1,5 @@
 ![](http://futureworld.com/web/assets/img/logo-button.png)
 
-[TOC]
 
 
 ## 简介
@@ -14,7 +13,7 @@
 
 
 ## 第二步 向社区`projectAPI.sol`提交你的项目申请
-项目简介在[0x758a50c5dca4611d35a80f304aa1c1092ba09c1d](https://ftmscan.com/address/0x758a50c5dca4611d35a80f304aa1c1092ba09c1d "0x758a50c5dca4611d35a80f304aa1c1092ba09c1d")中找到函数`supplayProject（）`,提交项目的相关资料。资料包括`项目名称`,`项目简介`,`合约地址`，`收款地址`等等。
+项目简介在[0x2474E374Db782bB3A609f6109A40EE366B6cD747](https://ftmscan.com/address/0x2474E374Db782bB3A609f6109A40EE366B6cD747 "0x2474E374Db782bB3A609f6109A40EE366B6cD747")中找到函数`supplayProject（）`,提交项目的相关资料。资料包括`项目名称`,`项目简介`,`合约地址`，`收款地址`等等。
 
 
 > tips:调用成功后联系社区相关工作人员进行进行合约审核。
@@ -54,7 +53,7 @@ contract.methods.projectWebPay(uint _pid,string memory _item).send({from:address
 ```
 
 ### 提款
-在[0x758a50c5dca4611d35a80f304aa1c1092ba09c1d](https://ftmscan.com/address/0x758a50c5dca4611d35a80f304aa1c1092ba09c1d "0x758a50c5dca4611d35a80f304aa1c1092ba09c1d")中找到`projectWidraw(uint _pid)`进行提款即可，需要注意的是你必须用在supplyProject发起申请的地址才能够进行取款。
+在[0x2474E374Db782bB3A609f6109A40EE366B6cD747](https://ftmscan.com/address/0x2474E374Db782bB3A609f6109A40EE366B6cD747 "0x2474E374Db782bB3A609f6109A40EE366B6cD747")中找到`projectWidraw(uint _pid)`进行提款即可，需要注意的是你必须用在supplyProject发起申请的地址才能够进行取款。
 
 > tips:在合约中一共留下了3个地址。一个是你提交申请地址（项目管理）。一个是收款的钱包地址（用户收款）。一个是你的合约地址（用于再次确认是否属于您本人）
 
