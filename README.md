@@ -1,2 +1,63 @@
-# Future-World
-“未来世界” 提出了去中心化自治组织的概念。不同于中央集权的是，[未来世界]采用的是至下而上的方式,从社区成员的实际需求出发，通过智能合约建立一套图灵完备的经济模型。社区的所有规则将才写入智能合约建立一套坚如磐石的规则。这些规则将由投票规则产生，由社区成员开发，由共识维护者审计。我们也会根据实际需求制定出一套符合需求的市场经济，当然这些也都会通过合约进行表现。  在这里，你可以学到各类的知识；掌握行业最前沿的机会；使用解决你需求的Dapp；更重要的是你正处于一个跟你志同道合的圈子里。  虽然区块链日新月异，新事物层出不穷。但它对整个世界的改变和影响却是曲折和漫长的。我们也一样，目前处于雏形阶段，对它未来会成什么样一无所知。但我们相信DAO是具备生命力的，它会不断吸引志同道合的人，不断自我完善规则，不断用透明和可信的规则去推动社区的发展，不断对社区文化、精神、愿景提出更高的标准...  如果你想对我们更深入的了解，请到GitHub上了解每个细节。
+![](http://futureworld.com/web/assets/img/logo-button.png)
+
+[TOC]
+
+
+## 简介
+
+> projectAPI.sol 是“未来世界”DAO社区与开发者Dapp最核心的环节，它决定了社区的共识、帮助项目推广利润分配等问题。操作步骤如下。
+
+
+## 第一步：创建你的Dapp合约
+创建合约，在合约中引入demo.sol中的相关内容，除函数 test()之外，其余的如果对合约内容不够熟悉的最好全部保留，也可以根据您进行灵活配置。创建好你的合约合约。
+> tips:可以将`projectAPI.sol`文件复制到本地进行调试与各项测试。
+
+
+## 第二步 向社区`projectAPI.sol`提交你的项目申请
+项目简介在[0x2474E374Db782bB3A609f6109A40EE366B6cD747](https://ftmscan.com/address/0x2474E374Db782bB3A609f6109A40EE366B6cD747 "0x758a50c5dca4611d35a80f304aa1c1092ba09c1d")中找到函数`supplayProject（）`,提交项目的相关资料。资料包括`项目名称`,`项目简介`,`合约地址`，`收款地址`等等。
+
+
+> tips:调用成功后联系社区相关工作人员进行进行合约审核。
+
+## 第三步 在你的合约中调用`confirmProject()` 确认身份
+## 其他问题
+### 查询用户付费
+
+- **solidity**
+``` solidity
+	projectAPI.viewUserPay(uint _pid,address _user);
+```
+
+- **javascript**
+```javascript
+contract.methods.payInformation('你的ID','用户地址','收费类目').call(function(s,r){
+	if(s==null && r.status) {
+		//执行你的代码....
+	}
+})
+```
+
+### 向用户发起付费
+- **solidity**
+``` solidity
+	function testpay() public payable returns (bool) {
+        require(msg.value > 0) ;
+        bool status = payable(projectApiAddr).send(msg.value); // 必须引入
+        if(status) projectAPI.projectContractPay(myID,msg.sender,'item-1',msg.value) ;  // 必须引入
+        return status ;
+   }
+```
+- **javascript**
+```javascript
+contract.methods.projectWebPay(uint _pid,string memory _item).send({from:address}).on('confirmation',function(){
+	//在链上确认后执行相关你的代码
+})
+```
+
+### 提款
+在[0x2474E374Db782bB3A609f6109A40EE366B6cD747](https://ftmscan.com/address/0x2474E374Db782bB3A609f6109A40EE366B6cD747 "0x758a50c5dca4611d35a80f304aa1c1092ba09c1d")中找到`projectWidraw(uint _pid)`进行提款即可，需要注意的是你必须用在supplyProject发起申请的地址才能够进行取款。
+
+> tips:在合约中一共留下了3个地址。一个是你提交申请地址（项目管理）。一个是收款的钱包地址（用户收款）。一个是你的合约地址（用于再次确认是否属于您本人）
+
+
+
